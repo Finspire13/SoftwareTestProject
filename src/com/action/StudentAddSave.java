@@ -92,6 +92,7 @@ public class StudentAddSave extends ActionSupport {
 		cnbean.setStudent_Sex(Student_Sex);
 		cnbean.setStudent_Class(Student_Class);
 		cnbean.setStudent_State("Î´Èë×¡");
+		System.out.print(cnbean.getStudent_State());
 		cnbean.setStudent_DomitoryID(0);
 		new StudentDao().Add(cnbean);
 		    
