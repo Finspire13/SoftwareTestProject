@@ -10,7 +10,7 @@ import com.dao.DomitoryDao;
 public class DomitoryDaoTest_AUD {
 
 	@Test
-	public void DAO_DOMITORY_ADD_001() {
+	public void DAO_DOMITORY_ADD_001() throws Exception {
 		DomitoryBean testDomitory=new DomitoryBean();
 		testDomitory.setDomitory_ID(10622);
 		testDomitory.setDomitory_BuildingID(10);
@@ -25,7 +25,7 @@ public class DomitoryDaoTest_AUD {
 	}
 	
 	@Test(expected = Exception.class)
-	public void DAO_DOMITORY_ADD_002() {
+	public void DAO_DOMITORY_ADD_002() throws Exception {
 		DomitoryBean testDomitory=new DomitoryBean();
 		testDomitory.setDomitory_ID(-1);
 		testDomitory.setDomitory_BuildingID(-1);
@@ -40,7 +40,7 @@ public class DomitoryDaoTest_AUD {
 	
 	
 	@Test
-	public void DAO_DOMITORY_UPDATE_001(){
+	public void DAO_DOMITORY_UPDATE_001() throws Exception{
 		DomitoryBean testDomitory=new DomitoryBean();
 		testDomitory.setDomitory_ID(10622);
 		testDomitory.setDomitory_BuildingID(10);
@@ -54,7 +54,7 @@ public class DomitoryDaoTest_AUD {
 	}
 	
 	@Test(expected = Exception.class)
-	public void DAO_DOMITORY_UPDATE_002(){
+	public void DAO_DOMITORY_UPDATE_002() throws Exception{
 		DomitoryBean testDomitory=new DomitoryBean();
 		testDomitory.setDomitory_ID(-1);
 		testDomitory.setDomitory_BuildingID(-1);
@@ -69,17 +69,17 @@ public class DomitoryDaoTest_AUD {
 	
 	
 	@Test
-	public void DAO_DOMITORY_DELETE_001(){
+	public void DAO_DOMITORY_DELETE_001() throws Exception{
 		new DomitoryDao().Delete("Domitory_ID=10622");
 	}
 	
 	@Test
-	public void DAO_DOMITORY_DELETE_002(){
+	public void DAO_DOMITORY_DELETE_002() throws Exception{
 		new DomitoryDao().Delete("Domitory_ID=10702");
 	}
 	
 	@Test(expected = Exception.class)
-	public void DAO_DOMITORY_DELETE_003(){
+	public void DAO_DOMITORY_DELETE_003() throws Exception{
 		new DomitoryDao().Delete(null);
 	}
 

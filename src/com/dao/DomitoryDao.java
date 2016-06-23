@@ -91,7 +91,10 @@ public class DomitoryDao {
 	}
 	
 	//Ìí¼Ó
-	public void Add(DomitoryBean cnbean){
+	public void Add(DomitoryBean cnbean) throws Exception{
+		if(cnbean.getBuilding_Name()==null||cnbean.getDomitory_Name()==null||cnbean.getDomitory_Number()==null||cnbean.getDomitory_Tel()==null||cnbean.getDomitory_Type()==null)
+			throw new Exception();
+		
 		String sql="insert into Domitory (";
 		sql+="Domitory_BuildingID,Domitory_Name,Domitory_Type,Domitory_Number,Domitory_Tel";
 		sql+=") values(";
@@ -119,7 +122,10 @@ public class DomitoryDao {
 		}
 	}
 	//ÐÞ¸Ä
-	public void Update(DomitoryBean cnbean){
+	public void Update(DomitoryBean cnbean) throws Exception{
+		
+		if(cnbean.getBuilding_Name()==null||cnbean.getDomitory_Name()==null||cnbean.getDomitory_Number()==null||cnbean.getDomitory_Tel()==null||cnbean.getDomitory_Type()==null)
+			throw new Exception();
 		String sql="update Domitory set ";
 		sql+="Domitory_BuildingID='"+cnbean.getDomitory_BuildingID()+"',";
 		sql+="Domitory_Name='"+cnbean.getDomitory_Name()+"',";
@@ -150,7 +156,10 @@ public class DomitoryDao {
 		}
 	}
 	//É¾³ý
-	public void Delete(String strwhere){
+	public void Delete(String strwhere) throws Exception{
+		if(strwhere==null)
+			throw new Exception();
+		
 		String sql="delete Domitory where ";
 		sql+=strwhere;
 		Statement stat = null;

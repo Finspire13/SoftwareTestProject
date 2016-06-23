@@ -84,7 +84,10 @@ public class BuildingDao {
 	}
 	
 	//Ìí¼Ó
-	public void Add(BuildingBean cnbean){
+	public void Add(BuildingBean cnbean) throws Exception{
+		
+		if(cnbean.getBuilding_Introduction()==null||cnbean.getBuilding_Name()==null)
+			throw new Exception();
 		
 		String sql="insert into Building (";
 		sql+="Building_Name,Building_Introduction";
@@ -113,7 +116,11 @@ public class BuildingDao {
 		}
 	}
 	//ÐÞ¸Ä
-	public void Update(BuildingBean cnbean){
+	public void Update(BuildingBean cnbean) throws Exception{
+		
+		if(cnbean.getBuilding_Introduction()==null||cnbean.getBuilding_Name()==null)
+			throw new Exception();
+		
 		String sql="update Building set ";
 		sql+="Building_Name='"+cnbean.getBuilding_Name()+"',";
 		sql+="Building_Introduction='"+cnbean.getBuilding_Introduction()+"'";
@@ -141,7 +148,10 @@ public class BuildingDao {
 		}
 	}
 	//É¾³ý
-	public void Delete(String strwhere){
+	public void Delete(String strwhere) throws Exception{
+		if(strwhere==null)
+			throw new Exception();
+		
 		String sql="delete from building where ";
 		sql+=strwhere;
 		System.out.print(sql);

@@ -11,7 +11,7 @@ public class StudentDao {
 	//验证登录
 	public String CheckLogin(String username, String password){
 		String id = null;
-		String sql="select * from Student where Student_Username='"+username+"' and Student_Password='"+password+"' and Student_State='入住'";
+		String sql="select * from Student where Student_Username='"+username+"' and Student_Password='"+password+"' and Student_State='in'";
 		Statement stat = null;
 		ResultSet rs = null;
 		Connection conn = new DBHelper().getConn();
