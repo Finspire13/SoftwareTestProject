@@ -85,6 +85,7 @@ public class BuildingDao {
 	
 	//Ìí¼Ó
 	public void Add(BuildingBean cnbean){
+		
 		String sql="insert into Building (";
 		sql+="Building_Name,Building_Introduction";
 		sql+=") values(";
@@ -141,8 +142,9 @@ public class BuildingDao {
 	}
 	//É¾³ý
 	public void Delete(String strwhere){
-		String sql="delete Building where ";
+		String sql="delete from building where ";
 		sql+=strwhere;
+		System.out.print(sql);
 		Statement stat = null;
 		ResultSet rs = null;
 		Connection conn = new DBHelper().getConn();

@@ -25,7 +25,7 @@ public class TeacherDaoTest_CheckLogin {
 	@Parameters
     public static Collection data()  {
         return  Arrays.asList( new  Object[][] {
-        {"Teacher1","137823","1000001"} ,
+        {"Teacher1","137823","2000001"} ,
         {"Teacher1", "137825",null} ,
         {"Admin1", "678138",null} ,
         {"Teacher2", "137823",null} ,

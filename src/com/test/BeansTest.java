@@ -11,14 +11,6 @@ import com.bean.*;
 
 public class BeansTest {
 
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
-
 	@Test
 	public void TEST_BEAN_ADMIN_001() {
 		//fail("Not yet implemented");
