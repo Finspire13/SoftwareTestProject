@@ -9,6 +9,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import com.bean.*;
 import com.dao.*;
+import com.actionTest.*;
 
 
 public class PasswordUpdateSave extends ActionSupport {
@@ -121,6 +122,136 @@ public class PasswordUpdateSave extends ActionSupport {
 		
 
 	}
+	
+public String executeForIntegrationTest(String type,String id) throws Exception {
+		
+		if(type.equals("1"))//校园管理员身份
+		{
+			//查询原密码是否正确
+			if (new AdminDao().CheckPassword(id, Password)) {
+				//修改密码
+				AdminBean cnbean=new AdminBean();
+				cnbean=new AdminDao().GetBean(Integer.parseInt(id));
+				cnbean.setAdmin_Password(Password2);
+				new AdminDao().Update(cnbean);
+				Msg = "修改成功";
+				return null;
+			}
+			else
+			{
+				Msg = "用户名或者密码错误";
+				return INPUT;
+			}
+		}
+		else if(type.equals("2"))//楼宇管理员身份
+		{
+			//查询原密码是否正确
+			if (new TeacherDao().CheckPassword(id, Password)) {
+				//修改密码
+				TeacherBean cnbean=new TeacherBean();
+				cnbean=new TeacherDao().GetBean(Integer.parseInt(id));
+				cnbean.setTeacher_Password(Password2);
+				new TeacherDao().Update(cnbean);
+				Msg = "修改成功";
+				return null;
+			}
+			else
+			{
+				Msg = "用户名或者密码错误";
+				return INPUT;
+			}
+		}
+		else if(type.equals("3"))//学生身份
+		{
+			//查询原密码是否正确
+			if (new StudentDao().CheckPassword(id, Password)) {
+				//修改密码
+				StudentBean cnbean=new StudentBean();
+				cnbean=new StudentDao().GetBean(Integer.parseInt(id));
+				cnbean.setStudent_Password(Password2);
+				new StudentDao().Update(cnbean);
+				Msg = "修改成功";
+				return null;
+			}
+			else
+			{
+				Msg = "用户名或者密码错误";
+				return INPUT;
+			}
+		}
+		else
+		{
+			Msg = "请重新登录";
+			return null;
+		}
+		
+
+	}
+
+public String executeForUnitTest(String type,String id) throws Exception {
+	
+	if(type.equals("1"))//校园管理员身份
+	{
+		//查询原密码是否正确
+		if (new AdminDaoStub().CheckPassword(id, Password)) {
+			//修改密码
+			AdminBean cnbean=new AdminBean();
+			cnbean=new AdminDaoStub().GetBean(Integer.parseInt(id));
+			cnbean.setAdmin_Password(Password2);
+			new AdminDaoStub().Update(cnbean);
+			Msg = "修改成功";
+			return null;
+		}
+		else
+		{
+			Msg = "用户名或者密码错误";
+			return INPUT;
+		}
+	}
+	else if(type.equals("2"))//楼宇管理员身份
+	{
+		//查询原密码是否正确
+		if (new TeacherDaoStub().CheckPassword(id, Password)) {
+			//修改密码
+			TeacherBean cnbean=new TeacherBean();
+			cnbean=new TeacherDaoStub().GetBean(Integer.parseInt(id));
+			cnbean.setTeacher_Password(Password2);
+			new TeacherDaoStub().Update(cnbean);
+			Msg = "修改成功";
+			return null;
+		}
+		else
+		{
+			Msg = "用户名或者密码错误";
+			return INPUT;
+		}
+	}
+	else if(type.equals("3"))//学生身份
+	{
+		//查询原密码是否正确
+		if (new StudentDaoStub().CheckPassword(id, Password)) {
+			//修改密码
+			StudentBean cnbean=new StudentBean();
+			cnbean=new StudentDaoStub().GetBean(Integer.parseInt(id));
+			cnbean.setStudent_Password(Password2);
+			new StudentDaoStub().Update(cnbean);
+			Msg = "修改成功";
+			return null;
+		}
+		else
+		{
+			Msg = "用户名或者密码错误";
+			return INPUT;
+		}
+	}
+	else
+	{
+		Msg = "请重新登录";
+		return null;
+	}
+	
+
+}
 	
 	//判断是否空值
 	private boolean isInvalid(String value) {

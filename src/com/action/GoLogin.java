@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.struts2.ServletActionContext;
 import com.dao.*;
 import com.bean.*;
+import com.actionTest.*;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -102,4 +103,105 @@ public class GoLogin extends ActionSupport {
 		}
 		
 	}
+	
+public String executeForUnitTest() throws Exception {		
+		
+		
+		if(Type.equals("系统管理员"))
+		{
+			if (null == new AdminDaoStub().CheckLogin(Username, Password)) {
+				Msg = "用户名或者密码错误";
+				return INPUT;
+			}
+			else
+			{
+				//获取ID
+				String Admin_ID=new AdminDaoStub().CheckLogin(Username, Password);
+				return SUCCESS;
+			}
+		}
+		else if(Type.equals("楼宇管理员"))
+		{
+			if (null == new TeacherDaoStub().CheckLogin(Username, Password)) {
+				Msg = "用户名或者密码错误";
+				return INPUT;
+			}
+			else
+			{
+				//获取ID
+				String Teacher_ID=new TeacherDaoStub().CheckLogin(Username, Password);
+				return SUCCESS;
+			}
+		}
+		else if(Type.equals("学生"))
+		{
+			if (null == new StudentDaoStub().CheckLogin(Username, Password)) {
+				Msg = "用户名或者密码错误";
+				return INPUT;
+			}
+			else
+			{
+				//获取ID
+				String Student_ID=new StudentDaoStub().CheckLogin(Username, Password);
+				return SUCCESS;
+			}
+		}
+		else
+		{
+			Msg = "身份类型错误";
+			return INPUT;
+		}
+		
+	}
+
+public String executeForIntegrationTest() throws Exception {		
+	
+	
+	if(Type.equals("系统管理员"))
+	{
+		if (null == new AdminDao().CheckLogin(Username, Password)) {
+			Msg = "用户名或者密码错误";
+			return INPUT;
+		}
+		else
+		{
+			//获取ID
+			String Admin_ID=new AdminDao().CheckLogin(Username, Password);
+			return SUCCESS;
+		}
+	}
+	else if(Type.equals("楼宇管理员"))
+	{
+		if (null == new TeacherDao().CheckLogin(Username, Password)) {
+			Msg = "用户名或者密码错误";
+			return INPUT;
+		}
+		else
+		{
+			//获取ID
+			String Teacher_ID=new TeacherDao().CheckLogin(Username, Password);
+			return SUCCESS;
+		}
+	}
+	else if(Type.equals("学生"))
+	{
+		if (null == new StudentDao().CheckLogin(Username, Password)) {
+			Msg = "用户名或者密码错误";
+			return INPUT;
+		}
+		else
+		{
+			//获取ID
+			String Student_ID=new StudentDao().CheckLogin(Username, Password);
+			return SUCCESS;
+		}
+	}
+	else
+	{
+		Msg = "身份类型错误";
+		return INPUT;
+	}
+	
+}
+
 }

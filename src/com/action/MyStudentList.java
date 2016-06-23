@@ -2,11 +2,13 @@ package com.action;
 
 import java.io.PrintWriter;
 import java.util.List;
+
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.apache.struts2.ServletActionContext;
-import com.opensymphony.xwork2.ActionSupport;
 
+import org.apache.struts2.ServletActionContext;
+
+import com.opensymphony.xwork2.ActionSupport;
 import com.bean.*;
 import com.dao.*;
 
@@ -60,7 +62,7 @@ public class MyStudentList extends ActionSupport {
 	}
 	//处理用户请求的execute方法
 	public String execute() throws Exception {
-		
+		System.out.print("msList!!!");
 		//解决乱码，用于页面输出
 		HttpServletResponse response=null;
 		response=ServletActionContext.getResponse();

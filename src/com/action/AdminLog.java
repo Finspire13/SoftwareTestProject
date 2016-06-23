@@ -53,7 +53,7 @@ public class AdminLog extends ActionSupport {
 
 	//处理用户请求的execute方法
 	public String execute() throws Exception {
-		
+		System.out.print("al!!!!");
 		//解决乱码，用于页面输出
 		HttpServletResponse response=null;
 		response=ServletActionContext.getResponse();
