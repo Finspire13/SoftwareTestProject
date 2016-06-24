@@ -44,28 +44,40 @@ public class MyStudentListTest {
 	@Parameters
     public static Collection data()  {
         return  Arrays.asList( new  Object[][] {
-        {"10","Student_Class","1","abc",false,false,"success"} ,
-        {"10","Student_Class","13","abc",true,false,"success"} ,
-        {"10","Student_Name","Jin Xin","abc",false,false,"success"} ,
-        {"10","Student_Name","Jin","abc",true,false,"success"} ,
-        {"10","Student_Username","Student1","abc",false,false,"success"} ,
-        {"10","Student_Username","Student13","abc",true,false,"success"} ,
+        {"10","Student_Class","1","10622",false,false,"success"} ,
+        {"10","Student_Class","13","10622",true,false,"success"} ,
+        {"10","Student_Name","Jin Xin","10622",false,false,"success"} ,
+        {"10","Student_Name","Jin","10622",true,false,"success"} ,
+        {"10","Student_Username","Student1","10622",false,false,"success"} ,
+        {"10","Student_Username","Student13","10622",true,false,"success"} ,
         {"10","Student_Username","Student1","aef",true,false,"success"} ,
-        {"10","Student_Username",null,"abc",false,false,"success"} ,
-        {"10",null,"Student1","abc",true,false,"success"} ,
-        {"10","Student_Class","1",null,false,false,"success"} ,
-        {"10",null,null,null,true,false,"success"} ,
+        {"10","Student_Username",null,"10622",false,false,"success"} ,
+        {"10",null,"Student1","10622",true,false,"success"} ,
+        {"10","Student_Username","Student1",null,false,false,"success"} ,
+        {"10",null,null,null,false,false,"success"} ,
        } );
    }
 
 	@Test
-	public void test() throws Exception {
+	public void ACTION_MYSTUDENTLIST() throws Exception {
 		MyStudentList test=new MyStudentList();
 		test.setSearchKey(searchKey);
 		test.setSearchRow(searchRow);
 		test.setDomitory_ID(domitory_ID);
 		test.setBuilding_ID(building_ID);
 		assertEquals(result,test.executeForUnitTest());
+		assertEquals(this.isDomitoryListEmpty,test.getDomitorylist().isEmpty());
+		assertEquals(this.isStudentListEmpty,test.getList().isEmpty());
+	}
+	
+	@Test
+	public void ACTION_MYSTUDENTLIST_INTEGRATION() throws Exception {
+		MyStudentList test=new MyStudentList();
+		test.setSearchKey(searchKey);
+		test.setSearchRow(searchRow);
+		test.setDomitory_ID(domitory_ID);
+		test.setBuilding_ID(building_ID);
+		assertEquals(result,test.executeForIntegrationTest());
 		assertEquals(this.isDomitoryListEmpty,test.getDomitorylist().isEmpty());
 		assertEquals(this.isStudentListEmpty,test.getList().isEmpty());
 	}

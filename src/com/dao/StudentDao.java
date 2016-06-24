@@ -107,6 +107,8 @@ public class StudentDao {
 		List<StudentBean> list=new ArrayList<StudentBean>();
 		try{
 			stat = conn.createStatement();
+			System.out.println("SQL");
+			System.out.println(sql);
 			rs = stat.executeQuery(sql);
 			while(rs.next()){
 				StudentBean cnbean=new StudentBean();

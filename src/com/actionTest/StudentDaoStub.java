@@ -33,22 +33,31 @@ public class StudentDaoStub {
 		StudentBean testStudent=new StudentBean();
 		List<StudentBean> list=new ArrayList<StudentBean>();
 		//System.out.println("List:"+strwhere);
-		if(strwhere.equals("Student_State='in' and Building_ID=10 and Student_Class='1' and Domitory_ID='abc'")){
+		if(strwhere.equals("Student_State='in' and Building_ID=10 and Student_Class='1' and Domitory_ID='10622'")){
+			list.add(testStudent);
+			//System.out.println("!!!");
+		}
+		if(strwhere.equals("Student_State='in' and Building_ID=10 and Student_Name='Jin Xin' and Domitory_ID='10622'")){
+			list.add(testStudent);
+			//System.out.println("!!!");
+		}
+		if(strwhere.equals("Student_State='in' and Building_ID=10 and Student_Username='Student1' and Domitory_ID='10622'")){
+			list.add(testStudent);
+			//System.out.println("!!!");
+		}
+		if(strwhere.equals("Student_State='in' and Building_ID=10 and Domitory_ID='10622'")){
+			list.add(testStudent);
+			//System.out.println("!!!");
+		}
+		
+		if(strwhere.equals("Student_State='in' and Building_ID=10 and Student_Username='Student1'")){
 			list.add(testStudent);
 			System.out.println("!!!");
 		}
-		if(strwhere.equals("Student_State='in' and Building_ID=10 and Student_Name='Jin Xin' and Domitory_ID='abc'")){
+		if(strwhere.equals("Student_State='in' and Building_ID=10")){
 			list.add(testStudent);
 			System.out.println("!!!");
-		}
-		if(strwhere.equals("Student_State='in' and Building_ID=10 and Student_Username='Student1' and Domitory_ID='abc'")){
-			list.add(testStudent);
-			System.out.println("!!!");
-		}
-		if(strwhere.equals("Student_State='in' and Building_ID=10 and Domitory_ID='abc'")){
-			list.add(testStudent);
-			System.out.println("!!!");
-		}
+			}
 		return list;
 	}
 	

@@ -39,11 +39,20 @@ public class PasswordUpdateSaveTest {
    } 
 	
 	@Test
-	public void test() throws Exception {
+	public void ACTION_PASSWORDUPDATESAVE() throws Exception {
 		PasswordUpdateSave test=new PasswordUpdateSave();
 		test.setPassword(password);
 		test.setPassword2(password2);
 		assertEquals(output,test.executeForUnitTest(type, id));
+		assertEquals(msg,test.getMsg());
+	}
+	
+	@Test
+	public void ACTION_PASSWORDUPDATESAVE_INTEGRATION() throws Exception {
+		PasswordUpdateSave test=new PasswordUpdateSave();
+		test.setPassword(password);
+		test.setPassword2(password2);
+		assertEquals(output,test.executeForIntegrationTest(type, id));
 		assertEquals(msg,test.getMsg());
 	}
 

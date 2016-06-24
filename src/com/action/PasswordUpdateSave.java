@@ -125,6 +125,12 @@ public class PasswordUpdateSave extends ActionSupport {
 	
 public String executeForIntegrationTest(String type,String id) throws Exception {
 		
+	if(type==null)
+	{
+		Msg = "请重新登录";
+		return null;
+	}
+	
 		if(type.equals("1"))//校园管理员身份
 		{
 			//查询原密码是否正确
@@ -189,6 +195,12 @@ public String executeForIntegrationTest(String type,String id) throws Exception 
 	}
 
 public String executeForUnitTest(String type,String id) throws Exception {
+	
+	if(type==null)
+	{
+		Msg = "请重新登录";
+		return null;
+	}
 	
 	if(type.equals("1"))//校园管理员身份
 	{

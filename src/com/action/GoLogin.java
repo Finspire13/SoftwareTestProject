@@ -106,7 +106,11 @@ public class GoLogin extends ActionSupport {
 	
 public String executeForUnitTest() throws Exception {		
 		
-		
+		if(Type==null)
+		{
+			Msg = "身份类型错误";
+			return INPUT;
+		}
 		if(Type.equals("系统管理员"))
 		{
 			if (null == new AdminDaoStub().CheckLogin(Username, Password)) {
@@ -156,7 +160,11 @@ public String executeForUnitTest() throws Exception {
 
 public String executeForIntegrationTest() throws Exception {		
 	
-	
+	if(Type==null)
+	{
+		Msg = "身份类型错误";
+		return INPUT;
+	}
 	if(Type.equals("系统管理员"))
 	{
 		if (null == new AdminDao().CheckLogin(Username, Password)) {

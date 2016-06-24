@@ -71,5 +71,16 @@ public class GologinTest {
 		assertEquals(this.output,testGoLogin.executeForUnitTest());
 		assertEquals(this.msg,testGoLogin.getMsg());
 	}
+	
+	@Test
+	public void ACTION_GOLOGIN_INTEGRATION() throws Exception {
+		GoLogin testGoLogin=new GoLogin();
+		testGoLogin.setType(type);
+		testGoLogin.setUsername(username);
+		testGoLogin.setPassword(password);
+		
+		assertEquals(this.output,testGoLogin.executeForIntegrationTest());
+		assertEquals(this.msg,testGoLogin.getMsg());
+	}
 
 }
