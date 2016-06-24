@@ -1,5 +1,8 @@
 package com.actionTest;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.bean.AdminBean;
 import com.bean.StudentBean;
 
@@ -24,6 +27,29 @@ public class StudentDaoStub {
 	
 	public StudentBean GetBean(int id){
 		return new StudentBean();
+	}
+	
+	public List<StudentBean> GetList(String strwhere,String strorder){
+		StudentBean testStudent=new StudentBean();
+		List<StudentBean> list=new ArrayList<StudentBean>();
+		//System.out.println("List:"+strwhere);
+		if(strwhere.equals("Student_State='in' and Building_ID=10 and Student_Class='1' and Domitory_ID='abc'")){
+			list.add(testStudent);
+			System.out.println("!!!");
+		}
+		if(strwhere.equals("Student_State='in' and Building_ID=10 and Student_Name='Jin Xin' and Domitory_ID='abc'")){
+			list.add(testStudent);
+			System.out.println("!!!");
+		}
+		if(strwhere.equals("Student_State='in' and Building_ID=10 and Student_Username='Student1' and Domitory_ID='abc'")){
+			list.add(testStudent);
+			System.out.println("!!!");
+		}
+		if(strwhere.equals("Student_State='in' and Building_ID=10 and Domitory_ID='abc'")){
+			list.add(testStudent);
+			System.out.println("!!!");
+		}
+		return list;
 	}
 	
 	public void Update(StudentBean cnbean){

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.actionTest.*;
 import com.bean.*;
 import com.dao.*;
 
@@ -17,20 +18,26 @@ public class MyStudentList extends ActionSupport {
 
 	//下面是Action内用于封装用户请求参数的属性
 	private List<StudentBean> list;
+	private List<DomitoryBean> domitorylist;
+	private String Building_ID;
+	private String SearchRow;
+	private String SearchKey;
+	private String Domitory_ID;
+	
 	public List<StudentBean> getList() {
 		return list;
 	}
 	public void setList(List<StudentBean> list) {
 		this.list = list;
 	}
-	private String Building_ID;
+	
 	public String getBuilding_ID() {
 		return Building_ID;
 	}
 	public void setBuilding_ID(String buildingID) {
 		Building_ID = buildingID;
 	}
-	private List<DomitoryBean> domitorylist;
+	
 	public List<DomitoryBean> getDomitorylist() {
 		return domitorylist;
 	}
@@ -38,8 +45,7 @@ public class MyStudentList extends ActionSupport {
 		this.domitorylist = domitorylist;
 	}
 	
-	private String SearchRow;
-	private String SearchKey;
+	
 	public String getSearchRow() {
 		return SearchRow;
 	}
@@ -52,7 +58,7 @@ public class MyStudentList extends ActionSupport {
 	public void setSearchKey(String searchKey) {
 		SearchKey = searchKey;
 	}
-	private String Domitory_ID;
+	
 	
 	public String getDomitory_ID() {
 		return Domitory_ID;
@@ -61,6 +67,51 @@ public class MyStudentList extends ActionSupport {
 		Domitory_ID = domitoryID;
 	}
 	//处理用户请求的execute方法
+	public String executeForUnitTest() throws Exception {
+
+		//查询条件
+		String strWhere="Student_State='in' and Building_ID="+Building_ID;
+		if(!(isInvalid(SearchKey)))
+		{
+			strWhere+=" and "+SearchRow+"='"+SearchKey+"'";
+		}
+		if(!(isInvalid(Domitory_ID)))
+		{
+			strWhere+=" and Domitory_ID='"+Domitory_ID+"'";
+		}
+		System.out.println(strWhere);
+		//查询所有
+		list=new StudentDaoStub().GetList(strWhere,"Domitory_Name");
+		
+		//查询所有寝室
+		domitorylist=new DomitoryDaoStub().GetList("Domitory_BuildingID="+Building_ID,"Domitory_Name");
+	
+		return SUCCESS;
+		
+	}
+	
+	public String executeForIntegrationTest() throws Exception {
+
+		//查询条件
+		String strWhere="Student_State='in' and Building_ID="+Building_ID;
+		if(!(isInvalid(SearchKey)))
+		{
+			strWhere+=" and "+SearchRow+"='"+SearchKey+"'";
+		}
+		if(!(isInvalid(Domitory_ID)))
+		{
+			strWhere+=" and Domitory_ID='"+Domitory_ID+"'";
+		}
+		//查询所有
+		list=new StudentDao().GetList(strWhere,"Domitory_Name");
+		
+		//查询所有寝室
+		domitorylist=new DomitoryDao().GetList("Domitory_BuildingID="+Building_ID,"Domitory_Name");
+	
+		return SUCCESS;
+		
+	}
+	
 	public String execute() throws Exception {
 		System.out.print("msList!!!");
 		//解决乱码，用于页面输出
@@ -88,6 +139,7 @@ public class MyStudentList extends ActionSupport {
 		{
 			strWhere+=" and Domitory_ID='"+Domitory_ID+"'";
 		}
+		
 		//查询所有
 		list=new StudentDao().GetList(strWhere,"Domitory_Name");
 		

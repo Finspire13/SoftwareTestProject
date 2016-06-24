@@ -9,6 +9,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import com.bean.*;
 import com.dao.*;
+import com.actionTest.*;
 
 
 public class AdminLog extends ActionSupport {
@@ -16,6 +17,7 @@ public class AdminLog extends ActionSupport {
 	//下面是Action内用于封装用户请求参数的属性
 	private List<BuildingBean> buildinglist;
 	private List<DomitoryBean> domitorylist;
+	private String BuildingID;
 
 	public List<BuildingBean> getBuildinglist() {
 		return buildinglist;
@@ -33,7 +35,6 @@ public class AdminLog extends ActionSupport {
 		this.domitorylist = domitorylist;
 	}
 
-	private String BuildingID;
 	private String DomitoryID;
 	public String getBuildingID() {
 		return BuildingID;
@@ -71,6 +72,49 @@ public class AdminLog extends ActionSupport {
 		
 		//查询楼宇
 		buildinglist=new BuildingDao().GetList("","Building_Name");
+//		System.out.println(BuildingID);
+		//查询条件
+		String strWhere="1=1 ";
+		if(!(isInvalid(BuildingID)))
+		{
+			strWhere+=" and Domitory_BuildingID='"+BuildingID+"'";
+		}
+		else{
+			strWhere+=" and 1=2";
+		}
+		
+		
+		//查询寝室
+		domitorylist=new DomitoryDao().GetList(strWhere,"Domitory_Name");
+		
+		return SUCCESS;
+		
+	}
+	
+	public String executeForUnitTest() throws Exception {
+		//查询楼宇
+		//buildinglist=new BuildingDaoStub().GetList("","Building_Name");
+//		System.out.println(BuildingID);
+		//查询条件
+		String strWhere="1=1";
+		if(!(isInvalid(BuildingID)))
+		{
+			strWhere+=" and Domitory_BuildingID='"+BuildingID+"'";
+		}
+		else{
+			strWhere+=" and 1=2";
+		}
+		System.out.println(strWhere);
+		//查询寝室
+		domitorylist=new DomitoryDaoStub().GetList(strWhere,"Domitory_Name");
+		
+		return SUCCESS;
+		
+	}
+	
+	public String executeForIntegrationTest() throws Exception {
+		//查询楼宇
+		//buildinglist=new BuildingDao().GetList("","Building_Name");
 //		System.out.println(BuildingID);
 		//查询条件
 		String strWhere="1=1 ";
