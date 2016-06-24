@@ -24,7 +24,7 @@ public class AdminLogTest {
 		test.executeForUnitTest();
 		assertTrue(test.getDomitorylist().isEmpty());
 	}
-	     
+	         
 	@Test
 	public void ACTION_ADMINLOG_003() throws Exception {
 		AdminLog test=new AdminLog();
